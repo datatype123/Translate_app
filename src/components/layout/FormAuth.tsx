@@ -6,52 +6,66 @@ import {
   TouchableOpacity,
   StyleSheet,
   SafeAreaView,
+  KeyboardAvoidingView,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { useAppSelector } from "../../store/hooks";
 import { LightTheme, DarkTheme } from "../../config/Theme";
-import SwitchComponent from "../ui/SwitchComponent";
-import Login from "../ui/LoginScreen";
-import Signup from "../ui/SignupScreen";
-
-interface FormAuthProps {
-  onSubmit: (email: string, password: string) => void;
-}
-
-
+import Login from "../ui/Login";
+import Signup from "../ui/Signup";
 
 const FormAuth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const currentTheme = useAppSelector((state) => state.theme.currentTheme);
-  const [form, setForm] = useState(<Login />);
 
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      alignItems: "center",
       justifyContent: "center",
+      alignItems: "center",
       padding: 20,
-      backgroundColor: "transparent",
-      marginBottom: 300,
+      backgroundColor: currentTheme === "light" ? "#fff" : "#1e1e1e",
+    },
+    switchContainer: {
+      flexDirection: "row",
+      justifyContent: "center",
+      marginTop:40
+      // marginBottom: 20,
+    },
+    switchButton: {
+      paddingVertical: 10,
+      paddingHorizontal: 20,
+      marginHorizontal: 5,
+    },
+    switchText: {
+      fontSize: 16,
+      fontWeight: "bold",
+      color: "#888",
+    },
+    activeSwitch: {
+      borderBottomWidth: 2,
+      borderBottomColor: "#2575fc",
     },
   });
 
   return (
-    <SafeAreaView style={styles.container}>
-      <SwitchComponent
-        isLogin={isLogin}
-        setIsLogin={() => {
-          setIsLogin(true);
-          setForm(<Signup />);
-        }}
-        isSignup={false}
-        setSignup={() => {
-          setIsLogin(false);
-          setForm(<Login />);
-        }}
-      />
-      {form}
-    </SafeAreaView>
+    <KeyboardAvoidingView style={styles.container}>
+      <View style={styles.switchContainer}>
+        <TouchableOpacity
+          style={[styles.switchButton, isLogin && styles.activeSwitch]}
+          onPress={() => setIsLogin(true)}
+        >
+          <Text style={[styles.switchText, isLogin && { color: "#2575fc" }]}>Log in</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.switchButton, !isLogin && styles.activeSwitch]}
+          onPress={() => setIsLogin(false)}
+        >
+          <Text style={[styles.switchText, !isLogin && { color: "#2575fc" }]}>Sign up</Text>
+        </TouchableOpacity>
+      </View>
+      {isLogin ? <Login /> : <Signup />}
+    </KeyboardAvoidingView>
   );
 };
 

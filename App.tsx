@@ -5,7 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import NormalChat from './src/screens/Normal';
 import TranslateChat from './src/screens/Translate';
 import Settings from './src/screens/Settings';
-import { TouchableOpacity, View, Image, Text, StyleSheet, Animated } from 'react-native';
+import { TouchableOpacity, View, Image, Text, StyleSheet, Animated, KeyboardAvoidingView } from 'react-native';
 import CustomHeader from './src/components/ui/CustomHeader';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
