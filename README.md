@@ -9,7 +9,10 @@ Translate App là ứng dụng dịch thuật thông minh được phát triển
 - Giao diện mobile hiện đại, thân thiện với người dùng.  
 - Tích hợp backend riêng để quản lý API và dữ liệu.  
 - Hỗ trợ lưu trữ lịch sử dịch.  
-- Tối ưu hiệu năng cho cả iOS và Android.  
+- Tối ưu hiệu năng cho cả iOS và Android.
+- Dịch văn bản theo ngữ cảnh cho sự hỗ trợ của AI (đang phát triển)
+- Highlight các thuật ngữ quan trọng theo ngành nghề (đang phát triển)
+- Hiển thị nhiều bản dịch khác nhau theo các agent AI khác nhau (đang phát triển)
 
 ---
 
